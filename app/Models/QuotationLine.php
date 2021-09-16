@@ -9,6 +9,10 @@ class QuotationLine extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
     public function quotations()
     {
         $this->belongsTo(Quotation::class);

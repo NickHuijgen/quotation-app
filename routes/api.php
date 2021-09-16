@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\QuotationController;
-use \App\Http\Controllers\RegisterController;
+use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\QuotationLineController;
 
 /*
@@ -29,5 +29,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('quotations', QuotationController::class);
-Route::apiResource('users', RegisterController::class);
+Route::apiResource('users', UserController::class);
 Route::apiResource('quotationlines', QuotationLineController::class);

@@ -16,7 +16,7 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('customer_first_name');
             $table->string('customer_last_name');
             $table->string('customer_email');

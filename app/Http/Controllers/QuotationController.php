@@ -19,6 +19,20 @@ class QuotationController extends Controller
         ];
     }
 
+    public function show(Request $request, $id)
+    {
+        return [
+            'data' => Quotation::findOrFail($id)
+        ];
+    }
+
+    public function update(Request $request, $id)
+    {
+        $quotation = $request -> all();
+
+        Quotation::find($id) -> update($quotation);
+    }
+
     public function store()
     {
         $attributes = request()->validate([
@@ -35,5 +49,10 @@ class QuotationController extends Controller
         $quotation = Quotation::create($attributes);
 
         return $quotation;
+    }
+
+    public function destroy(Quotation $quotation)
+    {
+        $quotation->delete();
     }
 }

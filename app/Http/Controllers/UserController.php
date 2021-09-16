@@ -5,8 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        return [
+            'data' => User::all()
+        ];
+    }
+
+    public function show(Request $request, $id)
+    {
+        return [
+            'data' => User::findOrFail($id)
+        ];
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = $request -> all();
+
+        User::find($id) -> update($user);
+    }
+
     public function store()
     {
         $attributes = request()->validate([
@@ -22,5 +44,10 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create($attributes);
+    }
+
+    public function delete(User $user)
+    {
+        $user->delete();
     }
 }

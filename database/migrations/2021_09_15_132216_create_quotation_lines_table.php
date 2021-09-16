@@ -15,7 +15,7 @@ class CreateQuotationLinesTable extends Migration
     {
         Schema::create('quotation_lines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quotation_id');
+            $table->foreignId('quotation_id')->constrained()->cascadeOnDelete();
             $table->string('description');
             $table->integer('amount');
             $table->double('price');
