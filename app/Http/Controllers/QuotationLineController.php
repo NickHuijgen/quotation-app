@@ -14,9 +14,7 @@ class QuotationLineController extends Controller
 
     public function index(Request $request)
     {
-        return [
-            'data' => QuotationLine::all()
-        ];
+        return QuotationLine::orderBy('created_at', 'desc')->get();
     }
 
     public function show(Request $request, $id)
@@ -31,6 +29,8 @@ class QuotationLineController extends Controller
         $quotationline = $request -> all();
 
         QuotationLine::find($id) -> update($quotationline);
+
+        return 'Quotation line updated';
     }
 
     public function store()
@@ -42,6 +42,8 @@ class QuotationLineController extends Controller
         ]);
 
         $quotationline = QuotationLine::create($attributes);
+
+        return $quotationline;
     }
 
     public function delete(QuotationLine $quotationline)

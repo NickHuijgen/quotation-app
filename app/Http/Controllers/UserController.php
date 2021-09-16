@@ -10,9 +10,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        return [
-            'data' => User::all()
-        ];
+        return User::orderBy('created_at', 'desc')->get();
     }
 
     public function show(Request $request, $id)
@@ -27,6 +25,8 @@ class UserController extends Controller
         $user = $request -> all();
 
         User::find($id) -> update($user);
+
+        return 'User updated';
     }
 
     public function store()
@@ -44,9 +44,11 @@ class UserController extends Controller
         ]);
 
         $user = User::create($attributes);
+
+        return $user;
     }
 
-    public function delete(User $user)
+    public function destroy(User $user)
     {
         $user->delete();
     }
