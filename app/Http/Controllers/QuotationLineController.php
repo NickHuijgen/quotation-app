@@ -49,5 +49,7 @@ class QuotationLineController extends Controller
     public function delete(QuotationLine $quotationline)
     {
         $quotationline->delete();
+
+        return 'Quotation line deleted';
     }
 }

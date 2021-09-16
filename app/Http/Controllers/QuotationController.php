@@ -14,7 +14,8 @@ class QuotationController extends Controller
 
     public function index(Request $request)
     {
-        return Quotation::orderBy('created_at', 'desc')->get();
+//        return Quotation::orderBy('created_at', 'desc')->get();
+        return Quotation::paginate(10);
     }
 
     public function show(Request $request, $id)
@@ -54,5 +55,7 @@ class QuotationController extends Controller
     public function destroy(Quotation $quotation)
     {
         $quotation->delete();
+
+        return 'Quotation deleted';
     }
 }
