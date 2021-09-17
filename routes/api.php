@@ -34,3 +34,5 @@ Route::apiResource('quotationlines', QuotationLineController::class);
 
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
+
+Route::get('/usergetquotations/{user}', [UserController::class, 'getquotations']);

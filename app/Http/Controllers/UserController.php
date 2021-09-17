@@ -54,4 +54,11 @@ class UserController extends Controller
 
         return 'User deleted';
     }
+
+    public function getquotations($id)
+    {
+        $user = User::with('quotations')->find($id);
+
+        return $user->quotations;
+    }
 }
