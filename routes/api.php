@@ -27,12 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::put('/quotations/{quotation}', [\App\Http\Controllers\QuotationController::class, 'update']);
 //Route::delete('/quotations/{quotation}', [\App\Http\Controllers\QuotationController::class, 'delete']);
 
-
 Route::apiResource('quotations', QuotationController::class);
-Route::apiResource('users', UserController::class);
-Route::apiResource('quotationlines', QuotationLineController::class);
-
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
 
+Route::apiResource('quotationlines', QuotationLineController::class);
+
+Route::apiResource('users', UserController::class);
 Route::get('/usergetquotations/{user}', [UserController::class, 'getquotations']);
