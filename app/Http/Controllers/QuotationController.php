@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\QuotationLine;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
+use App\Models\User;
 
 class QuotationController extends Controller
 {
@@ -57,5 +58,25 @@ class QuotationController extends Controller
         $quotation->delete();
 
         return 'Quotation deleted';
+    }
+
+    public function calculatecost($id)
+    {
+        $quotation = Quotation::with('quotationlines')->find($id);
+
+        $var = 0;
+
+        foreach($quotation->quotationlines as $quotationline) {
+            $var = $var + $quotationline->price;
+        }
+
+        return $var;
+    }
+
+    public function getlines($id)
+    {
+        $quotation = Quotation::with('quotationlines')->find($id);
+
+        return $quotation->quotationlines;
     }
 }
