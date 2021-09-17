@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Factories\QuotationFactory;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Quotation;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         QuotationLine::factory(10)->create();
+//         QuotationLine::factory(10)->create();
+        QuotationFactory::factory(20)->create();
     }
 }

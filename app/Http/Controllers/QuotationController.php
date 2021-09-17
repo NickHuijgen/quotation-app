@@ -77,6 +77,6 @@ class QuotationController extends Controller
     {
         $quotation = Quotation::with('quotationlines')->find($id);
 
-        return $quotation->quotationlines;
+        return $quotation->quotationlines->paginate(10);
     }
 }

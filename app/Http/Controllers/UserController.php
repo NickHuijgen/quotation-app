@@ -59,6 +59,6 @@ class UserController extends Controller
     {
         $user = User::with('quotations')->find($id);
 
-        return $user->quotations;
+        return $user->quotations->paginate(10);
     }
 }
