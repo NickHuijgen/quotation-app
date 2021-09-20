@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quotation;
 use App\Models\QuotationLine;
 use Illuminate\Http\Request;
 
@@ -36,6 +35,7 @@ class QuotationLineController extends Controller
     public function store()
     {
         $attributes = request()->validate([
+//            'quotation_id' => 'required',
             'description' => 'required|max:255',
             'amount' => 'required',
             'price' => 'required',

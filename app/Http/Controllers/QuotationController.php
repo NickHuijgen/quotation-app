@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QuotationLine;
+use App\Mail\QuotationMade;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
-use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class QuotationController extends Controller
 {
@@ -16,6 +16,9 @@ class QuotationController extends Controller
     public function index(Request $request)
     {
 //        return Quotation::orderBy('created_at', 'desc')->get();
+//        $data = Quotation::paginate(request()->all());
+//        return Response::json($data, 10);
+
         return Quotation::paginate(10);
     }
 
@@ -24,6 +27,9 @@ class QuotationController extends Controller
         return [
             'data' => Quotation::findOrFail($id)
         ];
+//        $quotation = Quotation::findOrFail($id);
+//
+//        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
     }
 
     public function update(Request $request, $id)
@@ -38,6 +44,7 @@ class QuotationController extends Controller
     public function store()
     {
         $attributes = request()->validate([
+//            'user_id' => 'required',
             'customer_first_name' => 'required|max:255',
             'customer_last_name' => 'required|max:255',
             'customer_email' => 'required|email|max:255',
@@ -49,6 +56,8 @@ class QuotationController extends Controller
         ]);
 
         $quotation = Quotation::create($attributes);
+
+        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
 
         return $quotation;
     }
