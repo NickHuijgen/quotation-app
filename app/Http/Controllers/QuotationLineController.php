@@ -41,7 +41,8 @@ class QuotationLineController extends Controller
             'price' => 'required',
         ]);
 
-        $quotationline = QuotationLine::create($attributes);
+//        $quotationline = QuotationLine::create($attributes);
+        $quotationline = QuotationLine::create(request()->all());
 
         return $quotationline;
     }

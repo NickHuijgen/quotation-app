@@ -48,6 +48,7 @@ class QuotationController extends Controller
             'status' => 'required|max:255',
         ]);
 
+        //$quotation = Quotation::create($attributes);
         $quotation = Quotation::create(request()->all());
 
         return $quotation;
