@@ -40,21 +40,22 @@ class QuotationController extends Controller
     public function store()
     {
         //Request new data and save it in the $attributes variable
-        $attributes = request()->validate([
-//            'user_id' => 'required',
-            'customer_first_name' => 'required|max:255',
-            'customer_last_name' => 'required|max:255',
-            'customer_email' => 'required|email|max:255',
-            'customer_city' => 'required|max:255',
-            'customer_street' => 'required|max:255',
-            'customer_house_number' => 'required|max:255',
-            'customer_postal_code' => 'required|max:255',
-            'status' => 'required|max:255',
-        ]);
+//        $attributes = request()->validate([
+////            'user_id' => 'required',
+//            'customer_first_name' => 'required|max:255',
+//            'customer_last_name' => 'required|max:255',
+//            'customer_email' => 'required|email|max:255',
+//            'customer_city' => 'required|max:255',
+//            'customer_street' => 'required|max:255',
+//            'customer_house_number' => 'required|max:255',
+//            'customer_postal_code' => 'required|max:255',
+//            'status' => 'required|max:255',
+//        ]);
+//
+//        //Create a new quotation with the $attributes data
+//        $quotation = Quotation::create($attributes);
 
-        //Create a new quotation with the $attributes data
-        $quotation = Quotation::create($attributes);
-
+        $quotation= Quotation::create(request()->all());
         //Mail to the user that a new quotation has been made with the new quotation data.
 //        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
 

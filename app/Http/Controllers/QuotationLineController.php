@@ -35,16 +35,18 @@ class QuotationLineController extends Controller
 
     public function store()
     {
-        //Request all data and save it to the $attributes variable
-        $attributes = request()->validate([
-//            'quotation_id' => 'required',
-            'description' => 'required|max:255',
-            'amount' => 'required',
-            'price' => 'required',
-        ]);
+//        //Request all data and save it to the $attributes variable
+//        $attributes = request()->validate([
+////            'quotation_id' => 'required',
+//            'description' => 'required|max:255',
+//            'amount' => 'required',
+//            'price' => 'required',
+//        ]);
+//
+//        //Create a new QuotationLine with the $attributes data
+//        $quotationline = QuotationLine::create($attributes);
 
-        //Create a new QuotationLine with the $attributes data
-        $quotationline = QuotationLine::create($attributes);
+        $quotationline = QuotationLine::create(request()->all());
 
         //Update the totalcost line of the quotation in the database with a newly calculated cost.
         app('App\Http\Controllers\QuotationController')->calculatecost($quotationline->quotation_id);

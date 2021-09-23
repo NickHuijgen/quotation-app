@@ -37,20 +37,22 @@ class UserController extends Controller
     public function store()
     {
         //Make a new $attributes variable with all the new user data.
-        $attributes = request()->validate([
-           'first_name' => 'required|max:255',
-           'last_name' => 'required|max:255',
-           'city' => 'required|max:255',
-           'country' => 'required|max:255',
-           'street' => 'required|max:255',
-           'postal_code' => 'required|max:255',
-           'house_number' => 'required|max:255',
-           'email' => 'required|max:255',
-           'password' => 'required|max:255',
-        ]);
+//        $attributes = request()->validate([
+//           'first_name' => 'required|max:255',
+//           'last_name' => 'required|max:255',
+//           'city' => 'required|max:255',
+//           'country' => 'required|max:255',
+//           'street' => 'required|max:255',
+//           'postal_code' => 'required|max:255',
+//           'house_number' => 'required|max:255',
+//           'email' => 'required|max:255',
+//           'password' => 'required|max:255',
+//        ]);
+//
+//        //Make a new User with the $attributes data and save it as $user
+//        $user = User::create($attributes);
 
-        //Make a new User with the $attributes data and save it as $user
-        $user = User::create($attributes);
+        $user = User::create(request()->all());
 
         //Login the new user
         auth()->login($user);
