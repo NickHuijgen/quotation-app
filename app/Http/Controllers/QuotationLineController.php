@@ -46,6 +46,9 @@ class QuotationLineController extends Controller
         //Create a new QuotationLine with the $attributes data
         $quotationline = QuotationLine::create($attributes);
 
+        //Update the totalcost line of the quotation in the database with a newly calculated cost.
+        app('App\Http\Controllers\QuotationController')->calculatecost($quotationline->quotation_id);
+
         //Return the new quotationline
         return $quotationline;
     }

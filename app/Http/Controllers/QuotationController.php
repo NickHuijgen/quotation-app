@@ -84,6 +84,8 @@ class QuotationController extends Controller
             $totalprice = $totalprice + $quotationline->price*$quotationline->amount;
         }
 
+        //Update the totalprice variable in the database with the calculated total price
+        $quotation->update(['total_price' => $totalprice]);
         //Return the total price
         return $totalprice;
     }
