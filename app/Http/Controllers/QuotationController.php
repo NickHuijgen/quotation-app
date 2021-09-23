@@ -76,7 +76,7 @@ class QuotationController extends Controller
         $var = 0;
 
         foreach($quotation->quotationlines as $quotationline) {
-            $var = $var + $quotationline->price;
+            $var = $var + $quotationline->price*$quotationline->amount;
         }
 
         return $var;

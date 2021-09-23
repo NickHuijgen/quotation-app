@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\QuotationController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\QuotationLineController;
+use \App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('quotations', QuotationController::class);
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
+
+Route::get('/quotationmakepdf/{quotation}', [PdfController::class, 'makepdf']);
 
 Route::apiResource('quotationlines', QuotationLineController::class);
 
