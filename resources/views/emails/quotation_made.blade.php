@@ -8,5 +8,5 @@ Congratulations! You have successfully created a quotation in our app
 @endcomponent
 
 Thanks,<br>
-OutSmart
+Quotation app
 @endcomponent

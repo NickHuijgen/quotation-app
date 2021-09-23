@@ -2,47 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\QuotationMade;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
 use Illuminate\Support\Facades\Mail;
 
 class QuotationController extends Controller
 {
-    protected $guarded = [
-        'id',
-    ];
-
     public function index(Request $request)
     {
+        //Return all quotations without pagination. Ordered by newest first.
 //        return Quotation::orderBy('created_at', 'desc')->get();
-//        $data = Quotation::paginate(request()->all());
-//        return Response::json($data, 10);
 
+        //Return all quotations, paginated by 10
         return Quotation::paginate(10);
     }
 
     public function show(Request $request, $id)
     {
         return [
+            //Find (or fail) a user by their id and return their data.
             'data' => Quotation::findOrFail($id)
         ];
-//        $quotation = Quotation::findOrFail($id);
-//
-//        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
     }
 
     public function update(Request $request, $id)
     {
+        //Request new data and save it to $quotation
         $quotation = $request -> all();
 
+        //Find a quotation by it's id and update it with the new $quotation data
         Quotation::find($id) -> update($quotation);
 
-        return 'Quotation updated';
+        //Return the updated quotation
+        return $quotation;
     }
 
     public function store()
     {
+        //Request new data and save it in the $attributes variable
         $attributes = request()->validate([
 //            'user_id' => 'required',
             'customer_first_name' => 'required|max:255',
@@ -55,15 +52,19 @@ class QuotationController extends Controller
             'status' => 'required|max:255',
         ]);
 
+        //Create a new quotation with the $attributes data
         $quotation = Quotation::create($attributes);
 
-        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
+        //Mail to the user that a new quotation has been made with the new quotation data.
+//        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
 
+        //Return the new quotations
         return $quotation;
     }
 
     public function destroy(Quotation $quotation)
     {
+        //Delete a quotation
         $quotation->delete();
 
         return 'Quotation deleted';
@@ -71,21 +72,28 @@ class QuotationController extends Controller
 
     public function calculatecost($id)
     {
+        //Find a quotation with quotationlines by it's id
         $quotation = Quotation::with('quotationlines')->find($id);
 
-        $var = 0;
+        //Make a new $totalprice variable with a default value of 0
+        $totalprice = 0;
 
+        //For each quotationline that a quotation has
         foreach($quotation->quotationlines as $quotationline) {
-            $var = $var + $quotationline->price*$quotationline->amount;
+            //Add the price*amount of the quotationline to the $totalprice variable.
+            $totalprice = $totalprice + $quotationline->price*$quotationline->amount;
         }
 
-        return $var;
+        //Return the total price
+        return $totalprice;
     }
 
     public function getlines($id)
     {
+        //Find a quotation with quotatiolines by it's id
         $quotation = Quotation::with('quotationlines')->find($id);
 
+        //Return all of it's quotationlines
         return $quotation->quotationlines;
     }
 }

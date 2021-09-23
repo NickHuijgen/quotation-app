@@ -20,6 +20,7 @@ class QuotationMade extends Mailable
      *
      * @return void
      */
+    //Make the quotation variable usable in the mail class
     public function __construct(Quotation $quotation)
     {
         $this->quotation = $quotation;

@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    //Make sure the user can't change the id
     protected $guarded = [
         'id',
     ];
@@ -26,6 +27,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    //Set the password and remember token as hidden
     protected $hidden = [
         'password',
         'remember_token',
@@ -40,11 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //Encrypt the password
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
     }
 
+    //Define a hasMany relation with the quotations, a user can have many quotations
     public function quotations()
     {
         return $this->hasMany(Quotation::class);

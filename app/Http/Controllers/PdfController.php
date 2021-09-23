@@ -27,11 +27,14 @@ class PdfController extends Controller
         $dompdf->render();
 
 // Output the generated PDF to Browser
+        //Set attachment to false so it doesn't try to download the file when displaying it in browser
         $dompdf->stream('quotation.pdf', ['Attachment' => false]);
 
+        //Define the new message and add a $quotation
         $message = new QuotationMade($quotation);
+        //Attach the newly created pdf to the $message and name it 'quotation.pdf'
         $message->attachData($dompdf->output(), "quotation.pdf");
+        //Send a mail to a user with the $message attached
         Mail::to('test@test.com')->send($message);
-//        Mail::to('test@test.com')->send(new QuotationMade($quotation));
     }
 }
