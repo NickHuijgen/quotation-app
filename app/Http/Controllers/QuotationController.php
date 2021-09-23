@@ -63,16 +63,23 @@ class QuotationController extends Controller
 
     public function calculatecost($id)
     {
+        //Find a quotation with quotationlines by it's id
         $quotation = Quotation::with('quotationlines')->find($id);
 
-        $var = 0;
+        //Make a new $totalprice variable with a default value of 0
+        $totalprice = 0;
 
+        //For each quotationline that a quotation has
         foreach($quotation->quotationlines as $quotationline) {
-            $var = $var + $quotationline->price;
+            //Add the price*amount of the quotationline to the $totalprice variable.
+            $totalprice = $totalprice + $quotationline->price*$quotationline->amount;
         }
 
-        return $var;
+        //Return the total price
+        $quotation->update(['total_price' => $totalprice]);
+        return $totalprice;
     }
+
 
     public function getlines($id)
     {
