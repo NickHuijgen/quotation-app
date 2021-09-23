@@ -35,6 +35,6 @@ class PdfController extends Controller
         //Attach the newly created pdf to the $message and name it 'quotation.pdf'
         $message->attachData($dompdf->output(), "quotation.pdf");
         //Send a mail to a user with the $message attached
-        Mail::to('test@test.com')->send($message);
+        Mail::to($quotation->customer_email)->send($message);
     }
 }

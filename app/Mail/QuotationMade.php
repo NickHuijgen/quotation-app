@@ -34,6 +34,6 @@ class QuotationMade extends Mailable
     public function build()
     {
         return $this->markdown('emails.quotation_made')
-            ->subject('Quotation made');
+            ->subject('Your quotation');
     }
 }
