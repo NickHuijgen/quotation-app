@@ -99,4 +99,9 @@ class QuotationController extends Controller
         //Return all of it's quotationlines
         return $quotation->quotationlines;
     }
+
+    public function updatestatus(Quotation $quotation, $status)
+    {
+        $quotation->update(['status' => $status]);
+    }
 }
