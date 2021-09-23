@@ -10,7 +10,7 @@
         <div>
 
             <div>
-                <h4>Addressed to : </h4>
+                <h4><u>Recipient:</u></h4>
 
                 <strong>Name:</strong> <div>
                     {{ $quotation->customer_first_name }}
@@ -21,7 +21,7 @@
 
                 <div>{{ $quotation->customer_email }}</div> <br>
 
-                <strong>Address: </strong>
+                <strong>Address:</strong>
 
                 <div>
                 {{ $quotation->customer_street }}
@@ -34,7 +34,7 @@
             <br><br>
 
             <div>
-                <h4>From: </h4>
+                <h4><u>From:</u></h4>
 
                 <strong>Name:</strong> <div>
                     {{ $user->first_name }}
@@ -45,7 +45,7 @@
 
                 <div>{{ $user->email}}</div> <br>
 
-                <strong>Address: </strong>
+                <strong>Address:</strong>
 
                 <div>
                     {{ $user->street }}
@@ -58,7 +58,7 @@
 
         <br><br>
 
-        <h4>Lines: </h4>
+        <h4><u>Lines:</u></h4>
 
         <div>
             @foreach( $quotation->quotationlines as $quotationline )

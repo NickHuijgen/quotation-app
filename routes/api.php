@@ -32,7 +32,7 @@ Route::apiResource('quotations', QuotationController::class);
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
 
-Route::get('/quotationmakepdf/{quotation}', [PdfController::class, 'makepdf']);
+Route::get('/quotationmakepdf/{quotation}/{user}', [PdfController::class, 'makepdf']);
 
 Route::apiResource('quotationlines', QuotationLineController::class);
 
