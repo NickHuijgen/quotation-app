@@ -103,5 +103,7 @@ class QuotationController extends Controller
     public function updatestatus(Quotation $quotation, $status)
     {
         $quotation->update(['status' => $status]);
+
+        return $quotation;
     }
 }

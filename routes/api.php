@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('quotations', QuotationController::class);
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
-Route::get('/quotationgetlines/{quotation}/{status}', [QuotationController::class, 'updatestatus']);
+Route::get('/quotationupdatestatus/{quotation}/{status}', [QuotationController::class, 'updatestatus']);
 
 Route::get('/quotationmakepdf/{quotation}/{user}', [PdfController::class, 'makepdf']);
 
