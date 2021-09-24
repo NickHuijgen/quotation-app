@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quotation;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -72,9 +73,9 @@ class UserController extends Controller
     public function getquotations($id)
     {
         //Find a user with quotations by their id
-        $user = User::with('quotations')->find($id);
+        $user = User::with(['quotations'])->find($id);
 
         //Return the quotations of that user
-        return $user->quotations;
+        return $user->quotation = Quotation::orderby('id', 'desc')->paginate(10);
     }
 }
