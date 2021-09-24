@@ -13,8 +13,8 @@
                 <h4><u>Recipient:</u></h4>
 
                 <strong>Name:</strong> <div>
-                    {{ $quotation->customer_first_name }}
-                {{ $quotation->customer_last_name }},
+                {{ $quotation->customer_first_name }}
+                {{ $quotation->customer_last_name }}
                 </div> <br>
 
                 <strong>E-mail adress:</strong>
@@ -38,7 +38,7 @@
 
                 <strong>Name:</strong> <div>
                     {{ $user->first_name }}
-                    {{ $user->last_name }},
+                    {{ $user->last_name }}
                 </div> <br>
 
                 <strong>E-mail adress:</strong>
