@@ -10,7 +10,7 @@ class QuotationLineController extends Controller
     public function index(Request $request)
     {
         //Return all quotationlines, newest first
-        return QuotationLine::orderBy('created_at', 'desc')->get();
+        return QuotationLine::orderby('id', 'desc')->paginate(10);
     }
 
     public function show(Request $request, $id)
@@ -24,10 +24,10 @@ class QuotationLineController extends Controller
     public function update(Request $request, $id)
     {
         //Request all new  data and save it to the $quotationline variable
-        $quotationline = $request -> all();
+        $quotationline = $request->all();
 
         //Find a quotationline by it's id and update it's data with the new $quotationline data
-        QuotationLine::find($id) -> update($quotationline);
+        QuotationLine::find($id)->update($quotationline);
 
         //Return the updated quotationline data
         return $quotationline;

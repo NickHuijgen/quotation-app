@@ -76,6 +76,6 @@ class UserController extends Controller
         $user = User::with(['quotations'])->find($id);
 
         //Return the quotations of that user
-        return $user->quotation = Quotation::orderby('id', 'desc')->paginate(10);
+        return $user->quotation  = Quotation::orderby('id', 'desc')->where('id', '=', $id)->paginate(10);
     }
 }

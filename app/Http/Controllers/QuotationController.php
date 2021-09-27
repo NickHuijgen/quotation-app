@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuotationLine;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
 use Illuminate\Support\Facades\Mail;
@@ -13,8 +14,8 @@ class QuotationController extends Controller
         //Return all quotations without pagination. Ordered by newest first.
 //        return Quotation::orderBy('created_at', 'desc')->get();
 
-        //Return all quotations, paginated by 10
-        return Quotation::paginate(10);
+        //Return all quotations, paginated by 10 and newest first
+        return Quotation::orderby('id', 'desc')->paginate(10);
     }
 
     public function show(Request $request, $id)
@@ -28,10 +29,10 @@ class QuotationController extends Controller
     public function update(Request $request, $id)
     {
         //Request new data and save it to $quotation
-        $quotation = $request -> all();
+        $quotation = $request->all();
 
         //Find a quotation by it's id and update it with the new $quotation data
-        Quotation::find($id) -> update($quotation);
+        Quotation::find($id)->update($quotation);
 
         //Return the updated quotation
         return $quotation;
@@ -55,9 +56,7 @@ class QuotationController extends Controller
 //        //Create a new quotation with the $attributes data
 //        $quotation = Quotation::create($attributes);
 
-        $quotation= Quotation::create(request()->all());
-        //Mail to the user that a new quotation has been made with the new quotation data.
-//        Mail::to('customer@email.com')->send(new QuotationMade($quotation));
+        $quotation = Quotation::create(request()->all());
 
         //Return the new quotations
         return $quotation;
@@ -93,17 +92,19 @@ class QuotationController extends Controller
 
     public function getlines($id)
     {
-        //Find a quotation with quotatiolines by it's id
+        //Find a quotation with quotationlines by it's id
         $quotation = Quotation::with('quotationlines')->find($id);
 
         //Return all of it's quotationlines
-        return $quotation->quotationlines;
+        return $quotation->quotationlines = QuotationLine::orderby('id', 'desc')->where('id', '=', $id)->paginate(10);
     }
 
     public function updatestatus(Quotation $quotation, $status)
     {
+        //Update the quotation status with the $status variable
         $quotation->update(['status' => $status]);
 
+        //Return the updated quotation
         return $quotation;
     }
 }
