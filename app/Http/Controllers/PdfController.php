@@ -32,9 +32,11 @@ class PdfController extends Controller
 
         //Define the new message and add a $quotation
         $message = new QuotationMade($quotation);
+
         //Attach the newly created pdf to the $message and name it 'quotation.pdf'
         $message->attachData($dompdf->output(), "quotation.pdf");
+
         //Send a mail to a user with the $message attached
-        Mail::to($quotation->customer_email)->send($message);
+        Mail::to($quotation->customer_email)->queue($message);
     }
 }
