@@ -63,14 +63,14 @@
         <div>
             @foreach( $quotation->quotationlines as $quotationline )
                 <div>
-                    {{ $quotationline->amount }} x {{ $quotationline->description }}, ${{ $quotationline->price }}
+                    {{ $quotationline->amount }} x {{ $quotationline->description }}, €{{ $quotationline->price }}
                     <br>
-                    Costs ${{ $quotationline->price*$quotationline->amount }}
+                    Costs €{{ $quotationline->price*$quotationline->amount }}
                     <br><br>
                 </div>
             @endforeach
 
-            Total price ${{ (new App\Http\Controllers\QuotationController)->calculatecost($quotation->id) }}
+            Total price €{{ (new App\Http\Controllers\QuotationController)->calculatecost($quotation->id) }}
          </div>
     </div>
 </body>
