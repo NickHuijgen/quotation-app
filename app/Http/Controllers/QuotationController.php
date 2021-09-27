@@ -92,11 +92,11 @@ class QuotationController extends Controller
 
     public function getlines($id)
     {
-        //Find a quotation with quotationlines by it's id
+        //Find a quotation with quotationlines by its id
         $quotation = Quotation::with('quotationlines')->find($id);
 
         //Return all of it's quotationlines
-        return $quotation->quotationlines = QuotationLine::orderby('id', 'desc')->where('id', '=', $id)->paginate(10);
+        return $quotation->quotationlines;
     }
 
     public function updatestatus(Quotation $quotation, $status)
