@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\QuotationMade;
 use App\Models\QuotationLine;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class QuotationController extends Controller
@@ -106,5 +108,12 @@ class QuotationController extends Controller
 
         //Return the updated quotation
         return $quotation;
+    }
+
+    public function mailquotation(Quotation $quotation, User $user)
+    {
+        //Queue a mail to the customer
+        Mail::to($quotation->customer_email)
+            ->queue(new QuotationMade($quotation, $user));
     }
 }

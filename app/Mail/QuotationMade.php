@@ -47,8 +47,7 @@ class QuotationMade extends Mailable
         $dompdf->render();
 
 // Output the generated PDF to Browser
-        //Set attachment to false, so it doesn't try to download the file when displaying it in browser
-        $dompdf->stream('quotation.pdf', ['Attachment' => true]);
+//        $dompdf->stream('quotation.pdf', ['Attachment' => true]);
 
         return $this->markdown('emails.quotation_made')
             ->attachData($dompdf->output(), "quotation.pdf")
