@@ -32,7 +32,8 @@ Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, '
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
 Route::get('/quotationupdatestatus/{quotation}/{status}', [QuotationController::class, 'updatestatus']);
 Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 'mailquotation'])
-->middleware('throttle:10,1');
+    //Limit the amount of mails sent by a user to once every 5 seconds
+    ->middleware('throttle:1,0.1');
 
 Route::apiResource('quotationlines', QuotationLineController::class);
 
