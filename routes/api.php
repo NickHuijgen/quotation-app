@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\QuotationController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\QuotationLineController;
-use \App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +31,8 @@ Route::apiResource('quotations', QuotationController::class);
 Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, 'calculatecost']);
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
 Route::get('/quotationupdatestatus/{quotation}/{status}', [QuotationController::class, 'updatestatus']);
-Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 'mailquotation']);
+Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 'mailquotation'])
+->middleware('throttle:10,1');
 
 Route::apiResource('quotationlines', QuotationLineController::class);
 
