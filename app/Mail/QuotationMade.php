@@ -49,8 +49,11 @@ class QuotationMade extends Mailable
 // Output the generated PDF to Browser
 //        $dompdf->stream('quotation.pdf', ['Attachment' => true]);
 
+        //Make an email with the emails.quotation_made view file
         return $this->markdown('emails.quotation_made')
+            //Attach the generated pdf to the email and name it 'quotation.pdf'
             ->attachData($dompdf->output(), "quotation.pdf")
+            //Set the subject of the mail to 'Your quotation'
             ->subject('Your quotation');
 
     }
