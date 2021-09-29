@@ -114,6 +114,6 @@ class QuotationController extends Controller
     {
         //Queue a mail to the customer
         Mail::to($quotation->customer_email)
-            ->queue(new QuotationMade($quotation, $user));
+            ->send(new QuotationMade($quotation, $user));
     }
 }

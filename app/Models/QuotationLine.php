@@ -19,4 +19,10 @@ class QuotationLine extends Model
     {
         $this->belongsTo(Quotation::class);
     }
+
+    public function contents()
+    {
+        return $this->morphTo();
+    }
+
 }

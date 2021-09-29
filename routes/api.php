@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\QuotationController;
-use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\QuotationLineController;
+use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuotationLineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Route::get('/quotationcalculatecost/{quotation}', [QuotationController::class, '
 Route::get('/quotationgetlines/{quotation}', [QuotationController::class, 'getlines']);
 Route::get('/quotationupdatestatus/{quotation}/{status}', [QuotationController::class, 'updatestatus']);
 Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 'mailquotation'])
-    //Limit the amount of mails sent by a user to once every 5 seconds
+    //Limit the amount of mails sent by a user to once every 6 seconds
     ->middleware('throttle:1,0.1');
 
 Route::apiResource('quotationlines', QuotationLineController::class);

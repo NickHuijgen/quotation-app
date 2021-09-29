@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuotationLinesTable extends Migration
+class CreateHoursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateQuotationLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotation_lines', function (Blueprint $table) {
+        Schema::create('hours', function (Blueprint $table) {
             $table->id();
-            $table->morphs('contents');
-            $table->foreignId('quotation_id')->constrained()->cascadeOnDelete();
-            $table->integer('amount')->nullable();
+            $table->integer('hours');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateQuotationLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotation_lines');
+        Schema::dropIfExists('hours');
     }
 }

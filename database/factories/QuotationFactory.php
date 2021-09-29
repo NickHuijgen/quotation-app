@@ -23,7 +23,7 @@ class QuotationFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
+            'user_id' => User::factory(),
             'customer_first_name' => $this->faker->firstName(),
             'customer_last_name' => $this->faker->lastName(),
             'customer_email' => $this->faker->safeEmail(),
