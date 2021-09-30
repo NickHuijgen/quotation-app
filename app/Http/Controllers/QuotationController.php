@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Mail\QuotationMade;
-use App\Models\QuotationLine;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
 use App\Models\User;
@@ -58,10 +57,8 @@ class QuotationController extends Controller
 //        //Create a new quotation with the $attributes data
 //        $quotation = Quotation::create($attributes);
 
-        $quotation = Quotation::create(request()->all());
-
-        //Return the new quotations
-        return $quotation;
+        //Create a new quotation with the requested attributes and return it
+        return Quotation::create(request()->all());
     }
 
     public function destroy(Quotation $quotation)

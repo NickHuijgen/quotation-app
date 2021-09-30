@@ -62,4 +62,11 @@ class QuotationLineController extends Controller
 
         return 'Quotation line deleted';
     }
+
+    public function getcontents(Request $request, $id)
+    {
+        $quotationline = QuotationLine::with(['contents'])->find($id);
+
+        return $quotationline->contents;
+    }
 }

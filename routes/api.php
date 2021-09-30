@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuotationLineController;
+use App\Http\Controllers\HourController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,11 @@ Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 
     ->middleware('throttle:1,0.1');
 
 Route::apiResource('quotationlines', QuotationLineController::class);
+Route::get('getcontents/{quotationline}', [QuotationLineController::class, 'getcontents']);
+
+Route::apiResource('hours', HourController::class);
+
+Route::apiResource('products', ProductController::class);
 
 Route::apiResource('users', UserController::class);
 Route::get('/usergetquotations/{user}', [UserController::class, 'getquotations']);

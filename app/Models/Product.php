@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
     public function QuotationLine()
     {
         return $this->morphMany(QuotationLine::class, 'contents');

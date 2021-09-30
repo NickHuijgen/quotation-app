@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //Return users ordered by the creation date. Newest first.
-        return User::orderBy('created_at', 'desc')->get();
+        return User::orderBy('id', 'desc')->get();
     }
 
     public function show(Request $request, $id)
