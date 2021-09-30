@@ -39,7 +39,7 @@ class ProductController extends Controller
         return Product::create(request()->all());
     }
 
-    public function delete(Product $product)
+    public function destroy(Product $product)
     {
         //Delete a product
         $product->delete();

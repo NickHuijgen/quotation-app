@@ -71,7 +71,7 @@ class QuotationController extends Controller
 
     public function calculatecost($id)
     {
-        //Find a quotation with quotationlines by it's id
+        //Find a quotation with quotationlines by its id
         $quotation = Quotation::with('quotationlines')->find($id);
 
         //Make a new $totalprice variable with a default value of 0

@@ -55,7 +55,7 @@ class QuotationLineController extends Controller
         return $quotationline;
     }
 
-    public function delete(QuotationLine $quotationline)
+    public function destroy(QuotationLine $quotationline)
     {
         //Delete a quotationline
         $quotationline->delete();

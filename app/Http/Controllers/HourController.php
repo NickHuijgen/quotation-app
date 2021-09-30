@@ -39,7 +39,7 @@ class HourController extends Controller
         return Hour::create(request()->all());
     }
 
-    public function delete(Hour $hour)
+    public function destroy(Hour $hour)
     {
         //Delete an hour
         $hour->delete();
