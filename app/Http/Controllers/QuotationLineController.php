@@ -59,8 +59,12 @@ class QuotationLineController extends Controller
 
     public function destroy(QuotationLine $quotationline)
     {
+        $quotation_id = $quotationline->quotation_id;
+
         //Delete a quotationline
         $quotationline->delete();
+
+        app('App\Http\Controllers\QuotationController')->calculatecost($quotation_id);
 
         return 'Quotation line deleted';
     }
