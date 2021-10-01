@@ -9,8 +9,8 @@ class HourController extends Controller
 {
     public function index(Request $request)
     {
-        //Return all hours, newest first
-        return Hour::orderby('id', 'desc')->paginate(10);
+        //Return all hours, the newest first
+        return Hour::orderby('id', 'desc')->get();
     }
 
     public function show(Request $request, $id)

@@ -9,8 +9,8 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        //Return all products, newest first
-        return Product::orderby('id', 'desc')->paginate(10);
+        //Return all products, the newest first
+        return Product::orderby('id', 'desc')->get();
     }
 
     public function show(Request $request, $id)
