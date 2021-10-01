@@ -29,6 +29,8 @@ class QuotationLineController extends Controller
         //Find a quotationline by it's id and update it's data with the new $quotationline data
         QuotationLine::find($id)->update($quotationline);
 
+        $this->calculatecost($id);
+
         //Return the updated quotationline data
         return $quotationline;
     }
@@ -49,7 +51,6 @@ class QuotationLineController extends Controller
         $quotationline = QuotationLine::create(request()->all());
 
         //Update the totalcost line of the quotation in the database with a newly calculated cost.
-        app('App\Http\Controllers\QuotationController')->calculatecost($quotationline->quotation_id);
         $this->calculatecost($quotationline->id);
 
         //Return the new quotationline
@@ -84,6 +85,8 @@ class QuotationLineController extends Controller
 
         //Update the totalprice variable in the database with the calculated total price
         $quotationline->update(['total_price' => $totalprice]);
+
+        app('App\Http\Controllers\QuotationController')->calculatecost($quotationline->quotation_id);
 
         //Return the total price
         return $totalprice;
