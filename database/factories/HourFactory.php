@@ -22,7 +22,8 @@ class HourFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'hours' => $this->faker->numberBetween(1, 10),
+            'description' => $this->faker->sentence(),
         ];
     }
 }
