@@ -18,6 +18,7 @@ class CreateQuotationLinesTable extends Migration
             $table->morphs('contents');
             $table->foreignId('quotation_id')->constrained()->cascadeOnDelete();
             $table->integer('amount')->nullable();
+            $table->double('total_price')->nullable();
             $table->timestamps();
         });
     }

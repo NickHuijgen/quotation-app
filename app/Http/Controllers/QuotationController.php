@@ -80,7 +80,7 @@ class QuotationController extends Controller
         //For each quotationline that a quotation has
         foreach($quotation->quotationlines as $quotationline) {
             //Add the price*amount of the quotationline to the $totalprice variable.
-            $totalprice = $totalprice + $quotationline->price*$quotationline->amount;
+            $totalprice = $totalprice + $quotationline->total_price;
         }
 
         //Update the totalprice variable in the database with the calculated total price

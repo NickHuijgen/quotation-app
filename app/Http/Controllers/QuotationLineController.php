@@ -69,4 +69,22 @@ class QuotationLineController extends Controller
 
         return $quotationline->contents;
     }
+
+    public function calculatecost($id)
+    {
+        //Find a quotationline with contents by its id
+        $quotationline = QuotationLine::with(['contents'])->find($id);
+
+        //Make a new $totalprice variable with a default value of 0
+        $totalprice = 0;
+
+        //Add the price*amount of the contents to the $totalprice variable.
+        $totalprice = $totalprice + $quotationline->contents->price*$quotationline->amount;
+
+        //Update the totalprice variable in the database with the calculated total price
+        $quotationline->update(['total_price' => $totalprice]);
+
+        //Return the total price
+        return $totalprice;
+    }
 }

@@ -39,6 +39,7 @@ Route::get('/quotationmailpdf/{quotation}/{user}', [QuotationController::class, 
 
 Route::apiResource('quotationlines', QuotationLineController::class);
 Route::get('getcontents/{quotationline}', [QuotationLineController::class, 'getcontents']);
+Route::get('quotationlinecalculatecost/{quotationline}', [QuotationLineController::class, 'calculatecost']);
 
 Route::apiResource('hours', HourController::class);
 
