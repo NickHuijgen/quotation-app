@@ -50,6 +50,7 @@ class QuotationLineController extends Controller
 
         //Update the totalcost line of the quotation in the database with a newly calculated cost.
         app('App\Http\Controllers\QuotationController')->calculatecost($quotationline->quotation_id);
+        $this->calculatecost($quotationline->id);
 
         //Return the new quotationline
         return $quotationline;
