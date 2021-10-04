@@ -21,7 +21,7 @@ class Quotation extends Model
     }
 
     //Define a hasMany relation with quotationlines, a quotation can have many quotationlines
-    public function quotationlines()
+    public function quotationLines()
     {
         return $this->hasMany(QuotationLine::class);
     }

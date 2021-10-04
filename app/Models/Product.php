@@ -13,7 +13,7 @@ class Product extends Model
         'id',
     ];
 
-    public function QuotationLine()
+    public function quotationLine()
     {
         return $this->morphMany(QuotationLine::class, 'contents');
     }

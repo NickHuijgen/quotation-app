@@ -32,7 +32,7 @@ class QuotationController extends Controller
         //Request new data and save it to $quotation
         $quotation = $request->all();
 
-        //Find a quotation by it's id and update it with the new $quotation data
+        //Find a quotation by its id and update it with the new $quotation data
         Quotation::find($id)->update($quotation);
 
         //Return the updated quotation
@@ -85,6 +85,7 @@ class QuotationController extends Controller
 
         //Update the totalprice variable in the database with the calculated total price
         $quotation->update(['total_price' => $totalprice]);
+
         //Return the total price
         return $totalprice;
     }

@@ -13,7 +13,7 @@ class Hour extends Model
         'id',
     ];
 
-    public function QuotationLine()
+    public function quotationLine()
     {
         return $this->morphOne(QuotationLine::class, 'contents');
     }
