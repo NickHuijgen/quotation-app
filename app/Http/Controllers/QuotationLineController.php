@@ -10,7 +10,7 @@ class QuotationLineController extends Controller
     public function index(Request $request)
     {
         //Return all quotationlines, newest first
-        return QuotationLine::orderby('id', 'desc')->paginate(10);
+        return QuotationLine::orderby('id', 'desc')->get();
     }
 
     public function show(Request $request, $id)
