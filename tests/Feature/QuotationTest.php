@@ -29,20 +29,19 @@ use RefreshDatabase;
         $this->artisan('migrate:fresh');
 
         User::factory()->create();
-        $quotation = Quotation::factory()->create();
+        Quotation::factory()->create();
     }
 
     public function test_index_quotations()
     {
-        //Create a new quotation
-        $quotation = Quotation::factory()->create();
+        //Create 3 new quotations
+        $quotation = Quotation::factory(3)->create();
 
         //Create a get request to the index function
         $response = $this->get('/api/quotations');
 
         //Check if the created quotation is displayed and assert there are no errors
-        $response->assertSee($quotation->customer_first_name)
-            ->assertSee($quotation->id)
+        $response->assertJsonCount(4)
             ->assertStatus(200);
     }
 
@@ -57,14 +56,12 @@ use RefreshDatabase;
         //Check if the attributes of the created quotation are displayed and assert there are no errors
         $response->assertSee($quotation->customer_first_name)
             ->assertSee($quotation->id)
+            ->assertJsonCount(1)
             ->assertStatus(200);
     }
 
     public function test_make_quotation()
     {
-        //Create a new quotation
-        $quotation = Quotation::factory()->create();
-
         //Create a new quotation
         $response = $this->post('/api/quotations/', [
             'user_id' => 1,

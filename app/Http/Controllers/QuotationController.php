@@ -16,7 +16,7 @@ class QuotationController extends Controller
 //        return Quotation::orderBy('created_at', 'desc')->get();
 
         //Return all quotations, paginated by 10 and newest first
-        return Quotation::orderby('id', 'desc')->paginate(10);
+        return Quotation::orderby('id', 'desc')->get();
     }
 
     public function show(Request $request, $id)
