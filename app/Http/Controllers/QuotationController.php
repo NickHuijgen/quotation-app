@@ -63,8 +63,11 @@ class QuotationController extends Controller
 
     public function destroy(Quotation $quotation)
     {
+        if (!$quotation->status = 'Sent') {
+            $quotation->delete();
+        }
         //Delete a quotation
-        $quotation->delete();
+
 
         return 'Quotation deleted';
     }
